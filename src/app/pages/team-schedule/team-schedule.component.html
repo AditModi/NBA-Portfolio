@@ -1,0 +1,127 @@
+<div class=" content">
+    <h2 class="font-weight-light text-center text-muted py-3">Team Schedule</h2>
+
+    <div class="container py-2">
+        <ng-container *ngFor="let game of schedule; even as isEven; odd as isOdd ">
+            <!-- timeline item 1 -->
+            <!-- row of each timeline -->
+            <div class="row no-gutters" *ngIf="isEven">
+
+                <!-- content in the box on the left -->
+                <div class="col-sm py-2">
+                    <div class="card  bg-dark shadow">
+
+                        <span class="float-right" matBadgeColor="primary"
+                            matBadge="Status: {{ game.period_time.period_status }}" matBadgeSize="small"
+                            matBadgeOverlap="false">.</span>
+
+                        <div class="card-body">
+                            <div class="d-flex justify-content-around text-uppercase">
+                                <h2 class="p-2 justify-content-left font-weight-bold text-danger large">
+                                    {{ game.home.nickname }}
+                                </h2>
+                                <div class="p-4 justify-content-center text-info small">
+                                    V.S.
+                                </div>
+                                <h2 class="p-2 justify-content-right font-weight-bold text-danger large">
+                                    {{ game.visitor.nickname }}
+                                </h2>
+                            </div>
+
+
+                            <div class="card-footer">
+                                <div class="float-left text-muted small">
+                                    Arena: {{ game.arena }}, {{ game.city }}
+                                </div>
+
+                                <div class="float-right text-muted small">
+                                    {{ getGameDate(game.date,game.time) }}
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- the dot and the two lines before and after it -->
+                <div class="col-sm-1 text-center flex-column d-none d-sm-flex">
+                    <div class="row h-50">
+                        <div class="col border-right">&nbsp;</div>
+                        <div class="col">&nbsp;</div>
+                    </div>
+                    <h5 class="m-2">
+                        <span class="badge badge-pill bg-success">&nbsp;</span>
+                    </h5>
+                    <div class="row h-50">
+                        <div class="col border-right">&nbsp;</div>
+                        <div class="col">&nbsp;</div>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <!--spacer-->
+                </div>
+            </div>
+
+            <!-- timeline item 2 -->
+            <div class="row no-gutters" *ngIf="isOdd">
+                <div class="col-sm">
+                    <!--spacer-->
+                </div>
+                <div class="col-sm-1 text-center flex-column d-none d-sm-flex">
+                    <div class="row h-50">
+                        <div class="col border-right">&nbsp;</div>
+                        <div class="col">&nbsp;</div>
+                    </div>
+                    <h5 class="m-2">
+                        <span class="badge badge-pill bg-light border">&nbsp;</span>
+                    </h5>
+                    <div class="row h-50">
+                        <div class="col border-right">&nbsp;</div>
+                        <div class="col">&nbsp;</div>
+                    </div>
+                </div>
+
+                <!-- content in the box on the right -->
+                <div class="col-sm py-2">
+                    <div class="card  bg-dark shadow">
+
+                        <span class="float-right" matBadgeColor="primary"
+                            matBadge="Status: {{ game.period_time.period_status }}" matBadgeSize="small"
+                            matBadgeOverlap="false">.</span>
+
+                        <div class="card-body">
+                            <div class="d-flex justify-content-around text-uppercase">
+                                <h2 class="p-2 justify-content-left font-weight-bold text-danger large">
+                                    {{ game.home.nickname }}
+                                </h2>
+                                <div class="p-4 justify-content-center text-info small">
+                                    V.S.
+                                </div>
+                                <h2 class="p-2 justify-content-right font-weight-bold text-danger large">
+                                    {{ game.visitor.nickname }}
+                                </h2>
+                            </div>
+
+
+                            <div class="card-footer">
+                                <div class="float-left text-muted small">
+                                    Arena: {{ game.arena }}, {{ game.city }}
+                                </div>
+
+                                <div class="float-right text-muted small">
+                                    {{ getGameDate(game.date,game.time) }}
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!--/row-->
+
+        </ng-container>
+
+    </div>
+
+</div>

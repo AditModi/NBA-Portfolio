@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+<div class=" content">
+  <div class=" row">
+    <div class=" col-md-12">
+      <div class=" card">
+        <h1>Twitter Timeline</h1>
+        <div *ngIf="undefined === myTimeline">Loading...</div>
+        
+        <ng-container *ngFor="let tweets of myTimeline.data">
+          
+          <blockquote class="twitter-tweet tw-align-center">
+            <a [href]="'https://twitter.com/' + tweets.user.screen_name + '/status/' + tweets.id_str + '?ref_src=twsrc%5Etfw'">Loading Tweets...!</a>
+          </blockquote>
+
+        </ng-container>
+      
+      </div>
+    </div>
+  </div>
+
+</div>

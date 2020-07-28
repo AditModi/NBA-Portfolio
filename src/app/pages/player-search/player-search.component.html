@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<div id="search-component">
+    <p>
+        <mat-toolbar>
+            <span>NBA Player Search</span>
+        </mat-toolbar>
+    </p>
+    
+    <div class="form-inline active-cyan active-cyan-2 mb-3">
+        <i class="fas fa-search " aria-hidden="true"></i>
+        <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search players by name..."
+            aria-label="Search" #searchBox (input)="search(searchBox.value)">
+    </div>
+
+    <table class="nba-player">
+        <ng-container *ngFor="let player of players$ | async; trackBy: trackByMethod">
+            <td (click)='openDialog(player)'>
+                <div class="picture-wrapper">
+                    <div class="picture">
+                        <img src="{{ postHeadshot(player) }}" onerror="this.src='./assets/img/default-avatar.png';">
+                    </div>
+                </div>
+                <div class="name">{{ player.first_name + ' ' + player.last_name}}</div>
+                <div class="title">{{ player.position }}</div>
+            </td>
+        </ng-container>
+    </table>
+</div>

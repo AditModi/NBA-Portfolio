@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<!-- Template for missing information e.g. player's height/weight -->
+<ng-template #NotApplicable>
+    <td class="text-center"></td>
+</ng-template>
+<mat-card>
+    <mat-dialog-content class="mat-typography">
+        <mat-card-header>
+            <img mat-card-avatar mat-card-sm-image src="{{ headShot }}"
+                onerror="this.src='./assets/img/default-avatar.png';">
+
+            <mat-card-title>{{ currPlayer.first_name + ' ' + currPlayer.last_name}}</mat-card-title>
+            <mat-card-subtitle>{{ currPlayer.position }}</mat-card-subtitle>
+            
+        </mat-card-header>
+<mat-card-content>
+            <div class=" col-md-12 active-cyan active-cyan-2 mb-3">
+                <div class=" card">
+                    <div class=" card-header">
+                        <h4 class="card-title">{{ currPlayer.first_name + ' ' + currPlayer.last_name }} Stats</h4>
+                    </div>
+                    <div class=" card-body">
+                        <div>
+                            <table class=" table table-hover">
+                                <thead class=" text-primary">
+                                    <tr>
+                                        <th class="text-center">First Name</th>
+                                        <th class="text-center">Last Name</th>
+                                        <th class="text-center">Height</th>
+                                        <th class="text-center">Weight</th>
+                                        <th class="text-center">Position</th>
+                                        <th class="text-center">Team</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-center">
+                                            <p>{{ currPlayer.first_name }}</p>
+                                        </td>
+                                        <td class="text-center">
+                                            <p>{{ currPlayer.last_name }}</p>
+                                        </td>
+                                        <th class="text-center" *ngIf="currPlayer.height_feet; else NotApplicable">
+                                            <p>{{ currPlayer.height_feet + "'" + currPlayer.height_inches + "\"" }}</p>
+                                        </th>
+                                        <th class="text-center" *ngIf="currPlayer.weight_pounds; else NotApplicable">
+                                            <p>{{ currPlayer.weight_pounds + " lb" }}</p>
+                                        </th>
+                                        <td class="text-center">
+                                            <p>{{ currPlayer.position }}</p>
+                                        </td>
+                                        <td class="text-center">
+                                            <p>{{ currPlayer.team.full_name }}</p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <form class="season-box">
+                                <mat-form-field color='warn' appearance="fill">
+                                    <mat-label>Season</mat-label>
+                                    <input matInput maxlength="4" [formControl]="seasonFormControl" placeholder="2019"
+                                        #newSeason (keyup.enter)="addSeason(newSeason.value)" autocomplete="off"
+                                        required>
+                                    <!-- <mat-error *ngIf="seasonFormControl.invalid">Please enter a number</mat-error> -->
+                                    <mat-error *ngIf="seasonFormControl.invalid">{{getErrorMessage()}}</mat-error>
+                                </mat-form-field>
+                            </form>
+                            <button mat-button color="primary" (click)="addSeason(newSeason.value); newSeason.value=''">
+                                <span class="material-icons md-48">
+                                    add_circle
+                                </span>
+                            </button>
+
+                            <div class="table-responsive text-nowrap">
+                                <table class="table mat-table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" class="col-3">SEASON</th>
+                                            <th scope="col" class="col-3">GP</th>
+                                            <th scope="col" class="col-3">MIN</th>
+                                            <th scope="col" class="col-3">PTS</th>
+                                            <th scope="col" class="col-3">FGM</th>
+                                            <th scope="col" class="col-3">FGA</th>
+                                            <th scope="col" class="col-3">FG%</th>
+                                            <th scope="col" class="col-3">3PM</th>
+                                            <th scope="col" class="col-3">3PA</th>
+                                            <th scope="col" class="col-3">3P%</th>
+                                            <th scope="col" class="col-3">FTM</th>
+                                            <th scope="col" class="col-3">FTA</th>
+                                            <th scope="col" class="col-3">FT%</th>
+                                            <th scope="col" class="col-3">OREB</th>
+                                            <th scope="col" class="col-3">DREB</th>
+                                            <th scope="col" class="col-3">REB</th>
+                                            <th scope="col" class="col-3">AST</th>
+                                            <th scope="col" class="col-3">TOV</th>
+                                            <th scope="col" class="col-3">STL</th>
+                                            <th scope="col" class="col-3">BLK</th>
+                                            <th scope="col" class="col-3">PF</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <ng-container *ngFor="let avg of playerAvg">
+                                            <td class="col-3">{{ avg.season }}</td>
+                                            <td class="col-3">{{ avg.games_played }}</td>
+                                            <td class="col-3">{{ avg.min }}</td>
+                                            <td class="col-3">{{ avg.pts }}</td>
+                                            <td class="col-3">{{ avg.fgm }}</td>
+                                            <td class="col-3">{{ avg.fga }}</td>
+                                            <td class="col-3">{{ avg.fg_pct }}</td>
+                                            <td class="col-3">{{ avg.fg3m }}</td>
+                                            <td class="col-3">{{ avg.fg3a }}</td>
+                                            <td class="col-3">{{ avg.fg3_pct }}</td>
+                                            <td class="col-3">{{ avg.ftm }}</td>
+                                            <td class="col-3">{{ avg.fta }}</td>
+                                            <td class="col-3">{{ avg.ft_pct }}</td>
+                                            <td class="col-3">{{ avg.oreb }}</td>
+                                            <td class="col-3">{{ avg.dreb }}</td>
+                                            <td class="col-3">{{ avg.reb }}</td>
+                                            <td class="col-3">{{ avg.ast }}</td>
+                                            <td class="col-3">{{ avg.turnover }}</td>
+                                            <td class="col-3">{{ avg.stl }}</td>
+                                            <td class="col-3">{{ avg.blk }}</td>
+                                            <td class="col-3">{{ avg.pf }}</td>
+                                        </ng-container>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</mat-card-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close color='warn'>Close</button>
+</mat-dialog-actions>
+    </mat-dialog-content>
+</mat-card>

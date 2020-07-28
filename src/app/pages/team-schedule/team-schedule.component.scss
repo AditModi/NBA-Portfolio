@@ -1,0 +1,11 @@
+::ng-deep .mat-badge-content {
+    width: auto;
+    display: grid;
+    min-width: 55px;
+    min-height: 40px;
+    text-align: center;
+    align-items: center;
+    padding: 5px 3px;
+    top: -20px;
+    right: -20px;
+}
