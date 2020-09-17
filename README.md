@@ -1,5 +1,6 @@
 # NBA Portfolio
 
+
 NBA-Portfolio is an Angular Application which contains Porfolio of all the NBA's players and their stats across several seasons . It also contains latest updates about the NBA fetched from twitter and the schedule about NBA games to be played .The website is hosted on Azure .
 
 ![2020-07-28 (1)](https://user-images.githubusercontent.com/48589838/88654543-23848200-d0eb-11ea-8a89-52e97693359a.png)
